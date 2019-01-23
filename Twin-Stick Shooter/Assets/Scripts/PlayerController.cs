@@ -8,14 +8,20 @@ public class PlayerController : MonoBehaviour
     SpriteRenderer sr;
 
     public GameObject bulletPrefab, shooter;
+    public GameObject bloodSplatter;
 
     public float hitPoints;
+    public float moveSpeed;
+
+    public AudioSource audio;
+    public AudioClip fireAudio;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -36,7 +42,7 @@ public class PlayerController : MonoBehaviour
         float angleDegrees = (180 / Mathf.PI) * angleRadians;
         transform.rotation = Quaternion.Euler(0.0f, 0.0f, angleDegrees);
 
-        rb.velocity = movement;
+        rb.velocity = movement * moveSpeed * Time.deltaTime;
 
         /*
          * FIRING
@@ -47,6 +53,8 @@ public class PlayerController : MonoBehaviour
 
     void Fire()
     {
+        audio.clip = fireAudio;
+        audio.Play();
         Instantiate(bulletPrefab, shooter.transform.position, shooter.transform.rotation);
     }
 
@@ -58,7 +66,12 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage()
     {
-        hitPoints -= 0.3f;
+        hitPoints -= 0.05f;
         UpdateColor();
+        if (hitPoints <= 0.0f)
+        {
+            Instantiate(bloodSplatter, transform.position, transform.rotation);
+            Destroy(gameObject);           
+        }
     }
 }

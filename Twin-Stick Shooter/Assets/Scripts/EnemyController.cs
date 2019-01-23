@@ -7,7 +7,9 @@ public class EnemyController : MonoBehaviour
     Rigidbody2D rb;
     SpriteRenderer sr;
 
-    public GameObject target;
+    public PlayerController target;
+    public GameObject bloodSplatter;
+
     public float moveSpeed;
 
     public float hitPoints;
@@ -17,6 +19,7 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        target = FindObjectOfType<PlayerController>();
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         LookAtTarget();
@@ -39,6 +42,11 @@ public class EnemyController : MonoBehaviour
     {
         hitPoints -= 0.2f;
         UpdateColor();
+        if(hitPoints <= 0.0f)
+        {
+            Destroy(gameObject);
+            Instantiate(bloodSplatter, transform.position, transform.rotation);
+        }
     }
 
     void LookAtTarget()
