@@ -12,6 +12,8 @@ public class EnemyController : MonoBehaviour
 
     public float hitPoints;
 
+    public Color newColor;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,17 +27,17 @@ public class EnemyController : MonoBehaviour
     {
         LookAtTarget();
         ApproachTarget();
-        UpdateColor();
     }
 
     void UpdateColor()
     {
-        sr.color = new Color(hitPoints, 0.0f, 0.0f);
+        newColor = new Color(hitPoints, 0.0f, 0.0f, 1.0f);
+        sr.color = newColor;
     }
 
     public void TakeDamage()
     {
-        hitPoints -= 50.0f;
+        hitPoints -= 0.2f;
         UpdateColor();
     }
 
@@ -49,5 +51,11 @@ public class EnemyController : MonoBehaviour
     void ApproachTarget()
     {
         rb.velocity = transform.right * moveSpeed * Time.deltaTime;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+            collision.gameObject.SendMessageUpwards("TakeDamage");
     }
 }

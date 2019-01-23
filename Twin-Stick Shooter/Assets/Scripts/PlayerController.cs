@@ -5,13 +5,17 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rb;
+    SpriteRenderer sr;
 
     public GameObject bulletPrefab, shooter;
+
+    public float hitPoints;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -44,5 +48,17 @@ public class PlayerController : MonoBehaviour
     void Fire()
     {
         Instantiate(bulletPrefab, shooter.transform.position, shooter.transform.rotation);
+    }
+
+    void UpdateColor()
+    {
+        Color newColor = new Color(0.0f, hitPoints, 0.0f, 1.0f);
+        sr.color = newColor;
+    }
+
+    public void TakeDamage()
+    {
+        hitPoints -= 0.3f;
+        UpdateColor();
     }
 }
