@@ -13,4 +13,23 @@ public class BulletMove : MonoBehaviour
         rb.isKinematic = true;
         rb.velocity = transform.right * moveSpeed;
     }
+
+
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if((collider.gameObject.CompareTag("Enemy")))
+        {
+            collider.gameObject.SendMessageUpwards("TakeDamage");
+            //EnemyController ec = collision.gameObject.GetComponent<EnemyController>();
+            //ec.TakeDamage();
+            Destroy(gameObject);
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collider)
+    {
+        if(collider.gameObject.CompareTag("Boundary"))
+            Destroy(gameObject);
+    }
 }
