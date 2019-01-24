@@ -6,6 +6,7 @@ public class BulletMove : MonoBehaviour
 {
     Rigidbody2D rb;
     public float moveSpeed;
+    EnemyController ec;
 
     void Start()
     {
@@ -14,15 +15,13 @@ public class BulletMove : MonoBehaviour
         rb.velocity = transform.right * moveSpeed;
     }
 
-
-
     void OnTriggerEnter2D(Collider2D collider)
     {
         if((collider.gameObject.CompareTag("Enemy")))
         {
-            collider.gameObject.SendMessageUpwards("TakeDamage");
-            //EnemyController ec = collision.gameObject.GetComponent<EnemyController>();
-            //ec.TakeDamage();
+            //collider.gameObject.SendMessageUpwards("TakeDamage");
+            ec = collider.gameObject.GetComponent<EnemyController>();
+            ec.TakeDamage();
             Destroy(gameObject);
         }
     }
