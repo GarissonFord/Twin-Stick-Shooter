@@ -7,6 +7,7 @@ public class BulletMove : MonoBehaviour
     Rigidbody2D rb;
     public float moveSpeed;
     EnemyController ec;
+    float timeOfSpawn, timeSinceSpawn = 2.0f;
 
     void Start()
     {
@@ -14,7 +15,13 @@ public class BulletMove : MonoBehaviour
         rb.isKinematic = true;
         rb.velocity = transform.right * moveSpeed;
     }
-
+    /*
+    void Update()
+    {
+        if (Time.time - timeOfSpawn >= timeSinceSpawn)
+            Destroy(gameObject);
+    }
+    */
     void OnTriggerEnter2D(Collider2D collider)
     {
         if((collider.gameObject.CompareTag("Enemy")))
