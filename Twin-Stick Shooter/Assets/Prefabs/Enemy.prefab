@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fb985593104a104e86c5263754c6aad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gc: {fileID: 0}
   target: {fileID: 0}
   bloodSplatter: {fileID: 332248914364395735, guid: 312ae5f050175974e859e84c66377de7,
     type: 3}
@@ -108,13 +109,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f1bb4b500f4fece438f722bef7ab6299, type: 3}
   - {fileID: 8300000, guid: df5d36a3bed52044aa562bc74bad5043, type: 3}
   - {fileID: 8300000, guid: 2c9ec015b03ff3b4190cf5b60ab2b1ed, type: 3}
-  deathAudio:
-  - {fileID: 8300000, guid: ef5ff571a5ca2134a96079b18d44d31c, type: 3}
-  - {fileID: 8300000, guid: 0260006e09adeee41b189134a1673138, type: 3}
-  - {fileID: 8300000, guid: 59c2a5726de72dd4d84bfdab02857263, type: 3}
-  - {fileID: 8300000, guid: 687d59ea61da4284ca6e0ce630203ded, type: 3}
-  - {fileID: 8300000, guid: aa8e351f6dc0ee047a7016d0864bd9d0, type: 3}
-  - {fileID: 8300000, guid: 5624ebbb9e0ee1444b6ced508af447a6, type: 3}
+  deathAudio: {fileID: 8300000, guid: 42101575cd88c5443bec4e886dfd3205, type: 3}
   zombieMoans:
   - {fileID: 8300000, guid: cbbe590f4fc088342a62a7fcc8bf8b1b, type: 3}
   - {fileID: 8300000, guid: 450d4cc347a5a2147b2b021a187c60e4, type: 3}
@@ -184,7 +179,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0260006e09adeee41b189134a1673138, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.75
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0

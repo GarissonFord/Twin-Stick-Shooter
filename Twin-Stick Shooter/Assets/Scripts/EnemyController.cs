@@ -20,7 +20,8 @@ public class EnemyController : MonoBehaviour
     public Color newColor;
 
     public AudioClip[] damageAudio;
-    public AudioClip[] deathAudio;
+    //public AudioClip[] deathAudio;
+    public AudioClip deathAudio;
     public AudioClip[] zombieMoans;
 
     // Start is called before the first frame update
@@ -32,7 +33,8 @@ public class EnemyController : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         audio = GetComponent<AudioSource>();
         audio.clip = zombieMoans[Random.Range(0, zombieMoans.Length)];
-        audio.Play();
+        //audio.Play();
+        audio.PlayOneShot(audio.clip, 0.25f);
         LookAtTarget();
     }
 
@@ -57,7 +59,8 @@ public class EnemyController : MonoBehaviour
 
         if(hitPoints <= 0.0f)
         {
-            audio.clip = deathAudio[Random.Range(0, deathAudio.Length)];
+            //audio.clip = deathAudio[Random.Range(0, deathAudio.Length)];
+            audio.clip = deathAudio;
             audio.Play();
             Instantiate(bloodSplatter, transform.position, transform.rotation);
             gc.UpdateScore();
@@ -65,8 +68,8 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            audio.clip = damageAudio[Random.Range(0, damageAudio.Length)];
-            audio.Play();
+            //audio.clip = damageAudio[Random.Range(0, damageAudio.Length)];
+            //audio.Play();
         }
     }
 
